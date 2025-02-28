@@ -32,7 +32,7 @@ export const assetFamily = atomFamily((code: string) =>
       const marketAtom = get(prev[code]);
 
       if (!marketAtom[args.market]) {
-        return set(prev[code], { [args.market]: atom(args.asset) });
+        return set(prev[code], { ...marketAtom, [args.market]: atom(args.asset) });
       }
 
       set(marketAtom[args.market]!, args.asset);
