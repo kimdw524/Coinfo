@@ -2,7 +2,8 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { getDefaultStore } from 'jotai';
 
-import { assetFamily } from '@/atoms/assetFamily';
+import { assetFamily, Market } from '@/atoms/asset';
+import { AssetDetail } from '@/types/asset';
 
 import type { UpbitTicker } from './types';
 
@@ -34,9 +35,8 @@ const useUpbitWebSocket = () => {
 
     socket.onmessage = async (e) => {
       const data: UpbitTicker = JSON.parse(await e.data.text());
-      const atom = assetFamily(data.code);
 
-      store.set(atom, {
+      const serializedData: AssetDetail = {
         ask_bid: data.ask_bid,
         change_price: data.signed_change_price,
         high_price: data.high_price,
@@ -52,6 +52,13 @@ const useUpbitWebSocket = () => {
         trade_price: data.trade_price,
         trade_volume: data.trade_volume,
         currency_code: 'KRW',
+      };
+
+      const code = data.code;
+
+      store.set(assetFamily(code), {
+        market: Market.Upbit,
+        asset: serializedData,
       });
     };
   }, []);

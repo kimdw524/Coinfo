@@ -1,4 +1,6 @@
-export interface Asset {
+export type CurrencyCode = 'USD' | 'KRW';
+
+export interface AssetDetail {
   name: string;
   symbol: string;
   opening_price: number;
@@ -14,5 +16,5 @@ export interface Asset {
   lowest_52_week_price: number;
   lowest_52_week_date: string;
   trade_volume: number;
-  currency_code: 'USD' | 'KRW';
+  currency_code: CurrencyCode;
 }
