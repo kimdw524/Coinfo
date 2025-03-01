@@ -11,10 +11,10 @@ export interface AssetDetail {
   change_price: number;
   ask_bid: 'ASK' | 'BID';
   trade_volume: number;
-  highest_52_week_price: number;
-  highest_52_week_date: string;
-  lowest_52_week_price: number;
-  lowest_52_week_date: string;
+  highest_52_week_price?: number;
+  highest_52_week_date?: string;
+  lowest_52_week_price?: number;
+  lowest_52_week_date?: string;
   trade_volume: number;
   currency_code: CurrencyCode;
 }

@@ -36,6 +36,8 @@ const useUpbitWebSocket = () => {
     socket.onmessage = async (e) => {
       const data: UpbitTicker = JSON.parse(await e.data.text());
 
+      const code = data.code.split('-')[1];
+
       const serializedData: AssetDetail = {
         ask_bid: data.ask_bid,
         change_price: data.signed_change_price,
@@ -45,16 +47,14 @@ const useUpbitWebSocket = () => {
         low_price: data.low_price,
         lowest_52_week_date: data.lowest_52_week_date,
         lowest_52_week_price: data.lowest_52_week_price,
-        name: data.code,
-        symbol: data.code,
+        name: code,
+        symbol: code,
         opening_price: data.opening_price,
         prev_closing_price: data.prev_closing_price,
         trade_price: data.trade_price,
         trade_volume: data.trade_volume,
         currency_code: 'KRW',
       };
-
-      const code = data.code;
 
       store.set(assetFamily(code), {
         market: Market.Upbit,
