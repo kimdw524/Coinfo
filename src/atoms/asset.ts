@@ -12,6 +12,7 @@ export interface AssetAtom {
 }
 export enum Market {
   Upbit,
+  Bithumb,
   Binance,
 }
 export const assetAtom = atom({} as AssetAtom);

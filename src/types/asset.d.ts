@@ -6,7 +6,7 @@ export interface AssetDetail {
   opening_price: number;
   high_price: number;
   low_price: number;
-  trade_price: number;
+  trade_price?: number;
   prev_closing_price: number;
   change_price: number;
   ask_bid: 'ASK' | 'BID';
@@ -15,6 +15,6 @@ export interface AssetDetail {
   highest_52_week_date?: string;
   lowest_52_week_price?: number;
   lowest_52_week_date?: string;
-  trade_volume: number;
+  trade_volume?: number;
   currency_code: CurrencyCode;
 }
