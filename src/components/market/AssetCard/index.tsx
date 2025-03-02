@@ -1,14 +1,15 @@
 'use client';
 
+import Link from 'next/link';
+
+import { withInViewport } from '@kimdw524/react-utils';
 import { useAtom } from 'jotai';
 
-import { assetFamily } from '@/atoms/assetFamily';
+import { assetFamily } from '@/atoms/asset';
+import AssetDetail from '@/components/market/AssetDetail';
 import { Card, CardContent } from '@/components/ui/card';
-import withInViewport from '@/hoc/withInViewport';
-import { cn } from '@/lib/utils';
 
 import AssetCardSkeleton from './skeleton';
-import { changeVariants } from './style';
 
 interface AssetCardProps {
   name: string;
@@ -17,39 +18,23 @@ interface AssetCardProps {
 }
 
 const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
-  const [asset] = useAtom(assetFamily(symbol));
-
-  const price = asset?.trade_price || 0;
-  const change = asset?.change_price || 0;
-  const changeType = change > 0 ? 'rise' : change < 0 ? 'fall' : 'same';
+  const [market] = useAtom(assetFamily(symbol));
 
   return (
-    <Card className="inline-block cursor-pointer select-none transition-all duration-100 hover:bg-slate-200" ref={ref}>
-      <CardContent className="p-4">
-        <AssetCardSkeleton name={name} symbol={symbol} isLoading={!asset}>
-          <div className="mb-2">
-            <p>{name}</p>
-            <p className="text-sm text-gray-600">{symbol}</p>
-          </div>
-          <div className="flex items-end justify-between">
-            <span className="font-semibold">
-              {price.toLocaleString()} {asset?.currency_code}
-            </span>
-            <div className={cn(changeVariants({ changeType }))}>
-              <span className="text-xs">
-                {change >= 0 && '+'}
-                {change.toLocaleString()}
-              </span>
-              <span>
-                {change >= 0 && '+'}
-                {Math.round((change / price) * 10000) / 100}%
-              </span>
-            </div>
-          </div>
-        </AssetCardSkeleton>
-      </CardContent>
-    </Card>
+    <Link href={`/currencies/${symbol}`}>
+      <Card
+        className="inline-block w-full cursor-pointer transition-all duration-100 select-none hover:bg-slate-200"
+        ref={ref}
+      >
+        <CardContent className="p-4">
+          <AssetCardSkeleton name={name} symbol={symbol} isLoading={!market}>
+            <AssetDetail name={name} marketAtom={market} />
+          </AssetCardSkeleton>
+        </CardContent>
+      </Card>
+    </Link>
   );
+  // const [assetData] = useAtom(assetAtom['UPBIT']);
 };
 
 export default withInViewport(AssetCard);
