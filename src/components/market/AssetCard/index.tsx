@@ -3,13 +3,11 @@
 import Link from 'next/link';
 
 import { withInViewport } from '@kimdw524/react-utils';
-import { useAtom } from 'jotai';
 
 import { assetFamily } from '@/atoms/asset';
 import AssetDetail from '@/components/market/AssetDetail';
 import { Card, CardContent } from '@/components/ui/card';
-
-import AssetCardSkeleton from './skeleton';
+import useAtomAsync from '@/hooks/useAtomAsync';
 
 interface AssetCardProps {
   name: string;
@@ -18,7 +16,7 @@ interface AssetCardProps {
 }
 
 const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
-  const [market] = useAtom(assetFamily(symbol));
+  const [market] = useAtomAsync(assetFamily(symbol));
 
   return (
     <Link href={`/currencies/${symbol}`}>
@@ -27,9 +25,7 @@ const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
         ref={ref}
       >
         <CardContent className="p-4">
-          <AssetCardSkeleton name={name} symbol={symbol} isLoading={!market}>
-            <AssetDetail name={name} marketAtom={market} />
-          </AssetCardSkeleton>
+          <AssetDetail name={name} marketAtom={market} />
         </CardContent>
       </Card>
     </Link>
