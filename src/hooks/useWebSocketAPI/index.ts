@@ -66,16 +66,27 @@ const useWebSocketAPI = <U>({ market, url, formatSubscribe, formatUpdate }: UseW
         asset: result,
       });
     };
-  }, []);
+  }, [market, url, store, formatUpdate]);
 
-  const subscribe = useCallback((tickers: string[]) => {
-    const socket = webSocketRef.current;
+  const subscribe = useCallback(
+    (tickers: string[]) => {
+      const socket = webSocketRef.current;
 
-    if (!socket || socket.readyState !== WebSocket.OPEN) {
+      if (!socket || socket.readyState !== WebSocket.OPEN) {
+        return;
+      }
+
+      socket.send(formatSubscribe(tickers));
+    },
+    [formatSubscribe],
+  );
+
+  const close = useCallback(() => {
+    if (!webSocketRef.current || webSocketRef.current.readyState !== WebSocket.OPEN) {
       return;
     }
 
-    socket.send(formatSubscribe(tickers));
+    webSocketRef.current.close();
   }, []);
 
   return useMemo(
@@ -84,8 +95,9 @@ const useWebSocketAPI = <U>({ market, url, formatSubscribe, formatUpdate }: UseW
       event: eventRef.current,
       connect,
       subscribe,
+      close,
     }),
-    [readyState, eventRef.current, connect, subscribe],
+    [readyState, connect, subscribe, close],
   );
 };
 
