@@ -30,7 +30,6 @@ const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
       </Card>
     </Link>
   );
-  // const [assetData] = useAtom(assetAtom['UPBIT']);
 };
 
 export default withInViewport(AssetCard);

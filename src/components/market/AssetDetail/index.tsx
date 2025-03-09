@@ -1,6 +1,7 @@
 import { PrimitiveAtom, useAtom } from 'jotai';
 
 import { MarketAtom } from '@/atoms/asset';
+import AssetLogo from '@/components/currency/AssetLogo';
 import { cn } from '@/lib/utils';
 
 import { changeVariants } from './style';
@@ -22,7 +23,12 @@ const AssetDetail = ({ name, marketAtom }: AssetDetailProps) => {
   return (
     <>
       <div className="mb-2">
-        <p>{name}</p>
+        <div className="mb-1 flex flex-row gap-2">
+          <span>
+            <AssetLogo symbol={asset.symbol} width={24} height={24} />
+          </span>
+          <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
+        </div>
         <p className="text-sm text-gray-600">{asset.symbol}</p>
       </div>
       <div className="flex items-end justify-between">
