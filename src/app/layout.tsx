@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import Navbar from '@/components/layout/Navbar';
+import ThemeProvider from '@/components/ThemeProvider';
+
 import './globals.css';
 
 const pretendard = localFont({
@@ -9,8 +12,8 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Board',
-  description: 'Board',
+  title: 'Coinfo',
+  description: 'Coinfo',
 };
 
 export default function RootLayout({
@@ -19,8 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={pretendard.className}>{children}</body>
+    <html lang="ko" suppressHydrationWarning>
+      <body className={pretendard.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
