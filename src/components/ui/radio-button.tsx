@@ -52,7 +52,7 @@ const RadioButtonItem = ({ children, value }: RadioButtonItemProps) => {
 
   return (
     <Button
-      variant={value === radioButtonContext.value ? 'secondary' : 'ghost'}
+      variant={value === radioButtonContext.value ? 'secondary' : 'link'}
       className="cursor-pointer"
       onClick={handleClick}
     >

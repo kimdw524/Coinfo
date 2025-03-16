@@ -42,7 +42,7 @@ const Chart = ({ symbol }: ChartProps) => {
         <RadioButtonItem value="1y">1년</RadioButtonItem>
         <RadioButtonItem value="all">최대</RadioButtonItem>
       </RadioButton>
-      <ApexChart options={chartOptions} series={series} type="area" height="100%" />
+      <ApexChart options={chartOptions} series={series} type="area" height="100%" style={{ color: '#000' }} />
     </div>
   );
 };
