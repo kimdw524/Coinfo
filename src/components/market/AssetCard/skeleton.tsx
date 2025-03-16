@@ -9,7 +9,7 @@ interface AssetCardSkeletonProps {
 
 const AssetCardSkeleton = ({ name, symbol }: AssetCardSkeletonProps) => {
   return (
-    <Card className="inline-block w-full cursor-pointer transition-all duration-100 select-none hover:bg-slate-200">
+    <Card className="hover:bg-secondary inline-block w-full cursor-pointer transition-all duration-100 select-none">
       <CardContent className="p-4">
         <div className="mb-2">
           <div className="mb-1 flex flex-row gap-2">

@@ -21,7 +21,7 @@ const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
   return (
     <Link href={`/currencies/${symbol}`}>
       <Card
-        className="inline-block w-full cursor-pointer transition-all duration-100 select-none hover:bg-slate-200"
+        className="hover:bg-secondary inline-block w-full cursor-pointer transition-all duration-100 select-none"
         ref={ref}
       >
         <CardContent className="p-4">

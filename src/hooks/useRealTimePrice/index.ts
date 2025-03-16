@@ -31,7 +31,7 @@ const useRealTimePrice = (symbol: string) => {
       bithumbWebSocket.close();
       binanceWebSocket.close();
     };
-  }, [upbitWebSocket, bithumbWebSocket, binanceWebSocket]);
+  }, [upbitWebSocket, bithumbWebSocket, binanceWebSocket, symbol]);
 };
 
 export default useRealTimePrice;
