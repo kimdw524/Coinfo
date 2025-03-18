@@ -4,7 +4,7 @@ import useBinanceWebSocket from '@/hooks/useBinanceWebSocket';
 import useBithumbWebSocket from '@/hooks/useBithumbWebSocket';
 import useUpbitWebSocket from '@/hooks/useUpbitWebSocket';
 
-const useRealTimePrice = (symbol: string) => {
+const useRealTimePrice = (symbol: string[]) => {
   const upbitWebSocket = useUpbitWebSocket();
   const bithumbWebSocket = useBithumbWebSocket();
   const binanceWebSocket = useBinanceWebSocket();
@@ -15,15 +15,15 @@ const useRealTimePrice = (symbol: string) => {
     binanceWebSocket.connect();
 
     upbitWebSocket.event.onopen = () => {
-      upbitWebSocket.subscribe([symbol]);
+      upbitWebSocket.subscribe(symbol);
     };
 
     bithumbWebSocket.event.onopen = () => {
-      bithumbWebSocket.subscribe([symbol]);
+      bithumbWebSocket.subscribe(symbol);
     };
 
     binanceWebSocket.event.onopen = () => {
-      binanceWebSocket.subscribe([symbol]);
+      binanceWebSocket.subscribe(symbol);
     };
 
     return () => {

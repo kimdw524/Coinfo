@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import CurrencyDetail from '@/components/currency/CurrencyDetail';
 import MarketData from '@/components/currency/MarketData';
 import { currencies } from '@/constants/currencies';
@@ -11,10 +13,12 @@ export default async function CurrenciesPage({ params }: CurrenciesPageProps) {
   const name = currencies.find((currency) => currency.symbol === symbol)!.name;
 
   return (
-    <main>
-      <CurrencyDetail symbol={symbol} name={name}>
-        <MarketData name={name} />
-      </CurrencyDetail>
-    </main>
+    <section>
+      <Suspense fallback={<div>loading...</div>}>
+        <CurrencyDetail symbol={symbol} name={name}>
+          <MarketData name={name} />
+        </CurrencyDetail>
+      </Suspense>
+    </section>
   );
 }

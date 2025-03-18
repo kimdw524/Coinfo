@@ -1,11 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ReactNode, Suspense } from 'react';
+import { ReactNode, Suspense, useMemo } from 'react';
 
 import Chart from '@/components/Chart';
 import CurrencyHeader from '@/components/currency/CurrencyHeader';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import useRealTimePrice from '@/hooks/useRealTimePrice';
 
 interface CurrencyDetailProps {
@@ -15,22 +14,15 @@ interface CurrencyDetailProps {
 }
 
 const CurrencyDetail = ({ children, symbol, name }: CurrencyDetailProps) => {
-  useRealTimePrice(symbol);
+  useRealTimePrice(useMemo(() => [symbol], [symbol]));
 
   return (
     <>
-      <Suspense fallback={<div>ssibal loading...loading...123312</div>}>
+      <Suspense fallback={<div>loading...</div>}>
         <CurrencyHeader symbol={symbol} name={name} />
       </Suspense>
-      <ResizablePanelGroup direction="horizontal" className="border">
-        <ResizablePanel className="w-[360px] min-w-[360px]" defaultSize={30}>
-          {children}
-        </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel defaultSize={70}>
-          <Chart symbol={symbol} />
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      {children}
+      <Chart symbol={symbol} />
     </>
   );
 };

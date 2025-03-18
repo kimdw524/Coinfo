@@ -26,7 +26,7 @@ const Chart = ({ symbol }: ChartProps) => {
     }));
 
     return [{ data, name: symbol }];
-  }, [candles]);
+  }, [candles, symbol]);
 
   const handleChange = useCallback((value: string) => {
     setTimeFrame(value as TimeFrame);
