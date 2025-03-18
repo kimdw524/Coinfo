@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coinfo
 
-## Getting Started
+가상화폐의 실시간 시세를 비교하고, 투자에 도움이 되는 기능을 제공하는 사이트입니다.
+- Upbit, Bithumb, Binance 3개의 거래소의 실시간 시세를 비교할 수 있습니다.
+- 차트 및 시가총액 정보를 확인할 수 있습니다.
+- 코인이 원하는 가격에 도달했을 때 발생하는 알림을 설정할 수 있습니다.
 
-First, run the development server:
+**개발 기간**: 25.01.28 ~ 진행 중
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`TypeScript` `Next.js` `shadcn/ui` `Tailwind CSS` `Jotai`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### [개발 과정 및 트러블 슈팅](https://separated-drifter-e42.notion.site/Coinfo-1b809bd563a4807186efeeff73161413)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![image](https://github.com/user-attachments/assets/672dbfd4-0954-4eaf-bfdf-1be70211d7d0)
