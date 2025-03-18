@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { useIsScrolled } from '@kimdw524/react-utils';
+import clsx from 'clsx';
 
 import ThemeToggleButton from '@/components/ThemeToggleButton';
 import { Button } from '@/components/ui/button';
@@ -16,11 +17,16 @@ import {
 
 import { navbarVariants } from './style';
 
-const Navbar = () => {
+interface NavbarProps {
+  className?: string;
+  sticky?: boolean;
+}
+
+const Navbar = ({ className, sticky = false }: NavbarProps) => {
   const isScrolled = useIsScrolled();
 
   return (
-    <div className={navbarVariants({ isScrolled })}>
+    <div className={clsx(className, navbarVariants({ isScrolled: isScrolled && sticky, isSticky: sticky }))}>
       <div>
         <h1>
           <Link href="/" legacyBehavior passHref>
@@ -29,7 +35,7 @@ const Navbar = () => {
         </h1>
       </div>
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList className="gap-2">
           <NavigationMenuItem>
             <ThemeToggleButton />
           </NavigationMenuItem>
@@ -43,7 +49,7 @@ const Navbar = () => {
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>Statistics</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem className="ml-2">
+          <NavigationMenuItem>
             <Button>Login</Button>
           </NavigationMenuItem>
         </NavigationMenuList>
